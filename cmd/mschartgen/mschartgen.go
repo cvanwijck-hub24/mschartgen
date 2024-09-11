@@ -1,14 +1,15 @@
 package main
 
 import (
+	"os"
+
 	"github.com/flaccid/mschartgen"
 	log "github.com/sirupsen/logrus"
 	"github.com/urfave/cli"
-	"os"
 )
 
 var (
-	orgName string
+	orgName      string
 	rootMemberId string
 )
 
@@ -18,15 +19,13 @@ func main() {
 		Usage: "generates an organisational chart from the microsoft graph api",
 		Flags: []cli.Flag{
 			&cli.StringFlag{
-				Name:    "log-level",
-				Aliases: []string{"l"},
-				Value:   "info",
-				Usage:   "log level (debug|info|warn|error)",
+				Name:  "log-level",
+				Value: "info",
+				Usage: "log level (debug|info|warn|error)",
 			},
 			&cli.StringFlag{
-				Name:    "org-name",
-				Aliases: []string{"o"},
-				Usage:   "overrides the organisstion name",
+				Name:  "org-name",
+				Usage: "overrides the organisstion name",
 			},
 		},
 		Before: func(c *cli.Context) error {
