@@ -4,6 +4,7 @@ import (
 	jsoniter "github.com/json-iterator/go"
 	"github.com/json-iterator/go/extra"
 	log "github.com/sirupsen/logrus"
+
 	// "io/ioutil"
 	"os"
 )
@@ -89,13 +90,12 @@ func Process(organisationName string, rootMemberId string) {
 	// 	//members = append(members, Member{Id: v.Id, Name: v.Name, Title: v.Title})
 	// }
 
-//	traverseDirectReports(org.Head.Id, org)
+	//	traverseDirectReports(org.Head.Id, org)
 
 	// now work on the org chart in preparation for render and convert
 
-
 	// temp: this should contain the entire tree of direct reports
-	org.Head.DirectReports = traverseDirectReports(org.Head.Id)
+	org.Head = traverseTree(org.Head)
 
 	// renders the raw org chart to file and log
 	renderRawOrgChart(org)
