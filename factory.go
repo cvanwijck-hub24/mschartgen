@@ -2,10 +2,11 @@ package mschartgen
 
 import (
 	//"fmt"
-	log "github.com/sirupsen/logrus"
 	"io/ioutil"
 	"net/http"
 	"os"
+
+	log "github.com/sirupsen/logrus"
 	//"github.com/davecgh/go-spew/spew"
 )
 
@@ -93,27 +94,14 @@ func getDirectReportsOfMember(memberId string) (members []Member, err error) {
 	return members, err
 }
 
-func traverseDirectReports(memberId string) (directReports []Member) {
-	// log.Infof("COUNT is %v DEPTH is %v", count, depth)
-	// if count >= depth {
-	// 	return
-	// }
-	members, _ := getDirectReportsOfMember(memberId)
-	log.Debug(members)
-	// if err != nil {
-	// 	log.Fatal(err)
-	// }
-	// if len(members) > 0 {
-	// 	log.Infof("%v has direct reports: $v", memberId, members)
-	// 	for _, b := range members {
-	// 		traverseDirectReports(b.Id)
-	// 	}
-	// }	else {
-	// 	log.Errorf("No direct reports for %v", memberId)
-	// }
-	// count = count+1
-	//
-	// return directReports
-	//directReports = append(directReports, members)
-	return directReports
+func traverseTree(member Member) Member {
+	members, _ := getDirectReportsOfMember(member.Id)
+	log.Debug("Members:", members)
+
+	for i, directReport := range members {
+		members[i] = traverseTree(directReport)
+	}
+
+	member.DirectReports = members
+	return member
 }
