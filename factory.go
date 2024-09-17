@@ -88,7 +88,7 @@ func getDirectReportsOfMember(memberId string) (members []Member, err error) {
 
 	// iterate over each person, converting it into a member
 	for _, v := range data.Data {
-		members = append(members, Member{Id: v.Id, Name: v.Name, Title: v.Title})
+		members = append(members, Member{Id: v.Id, Name: v.Name, Title: v.Title, UserPrincipalName: v.UserPrincipalName})
 	}
 
 	return members, err
