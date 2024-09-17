@@ -5,7 +5,6 @@ type People struct {
 	Persons []Person `json:"value"`
 }
 
-
 // phase 1: these types are binded to the msgraph api (data fetch stage)
 type Organization struct {
 	Data []OrgMetaData `json:"value"`
@@ -16,16 +15,16 @@ type OrgMetaData struct {
 }
 
 type Person struct {
-	Id            string `json:"id"`
-	Name          string `json:"displayName"`
-	Title         string `json:"jobTitle"`
-	DirectReports []Person
+	Id                string `json:"id"`
+	Name              string `json:"displayName"`
+	Title             string `json:"jobTitle"`
+	UserPrincipalName string `json:"userPrincipalName"`
+	DirectReports     []Person
 }
 
 type DirectReports struct {
 	Data []Person `json:"value"`
 }
-
 
 // phase 2: these types are the native data structures
 type Organisation struct {
@@ -34,12 +33,12 @@ type Organisation struct {
 }
 
 type Member struct {
-	Id            string
-	Name          string
-	Title         string
-	DirectReports []Member
+	Id                string
+	Name              string
+	Title             string
+	UserPrincipalName string
+	DirectReports     []Member
 }
-
 
 // phase 3: these types are for post-processing to orgchart js
 type OrgChart struct {

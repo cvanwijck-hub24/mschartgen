@@ -54,7 +54,7 @@ func Process(organisationName string, rootMemberId string) {
 	if err := json.Unmarshal([]byte(rootPerson), &person); err != nil {
 		panic(err)
 	}
-	log.Debug("---")
+	log.Debug("----")
 	log.Debugf("person:", person)
 	log.Debugf("Id:", person.Id)
 	org.Head.Id = person.Id
@@ -62,6 +62,8 @@ func Process(organisationName string, rootMemberId string) {
 	org.Head.Name = person.Name
 	log.Debugf("jobTitle:", person.Title)
 	org.Head.Title = person.Title
+	log.Debugf("UPN:", person.UserPrincipalName)
+	org.Head.UserPrincipalName = person.UserPrincipalName
 	log.Debugf("DirectReports:", person.DirectReports)
 	extra.SetNamingStrategy(extra.LowerCaseWithUnderscores)
 	output, _ := json.Marshal(person)
