@@ -25,7 +25,7 @@ func main() {
 			},
 			&cli.StringFlag{
 				Name:  "org-name",
-				Usage: "overrides the organisstion name",
+				Usage: "overrides the organisation name",
 			},
 		},
 		Before: func(c *cli.Context) error {
