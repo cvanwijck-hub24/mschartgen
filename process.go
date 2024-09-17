@@ -104,8 +104,8 @@ func Process(organisationName string, rootMemberId string) {
 
 	// process native into format used by upstream js lib
 	// the method should output to srv/data.json itself
-	convert(org)
+	//convert(org)
 
 	// start the http server
-	Serve(httpdRootDirectory, httpdListenPort)
+	//Serve(httpdRootDirectory, httpdListenPort)
 }
