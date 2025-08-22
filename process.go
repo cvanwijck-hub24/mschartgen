@@ -11,7 +11,7 @@ import (
 
 const (
 	//apiVersion = "v1.0"
-	apiVersion  = "BETA"
+	apiVersion  = "beta"
 	jsonFile    = "./srv/data.json"
 	rawJsonFile = "./srv/data.raw.json"
 )
@@ -37,7 +37,7 @@ func Process(organisationName string, rootMemberId string) {
 		if err != nil {
 			panic(err)
 		}
-		log.Debugf("orgName:", orgName)
+		log.Debugf("orgName: %s", orgName)
 		// set the organisation name
 		org.Name = orgName
 	} else {
@@ -49,22 +49,22 @@ func Process(organisationName string, rootMemberId string) {
 	if err != nil {
 		panic(err)
 	}
-	log.Debugf("rootPerson:", rootPerson)
+	log.Debugf("rootPerson: %s", rootPerson)
 	person := Person{}
 	if err := json.Unmarshal([]byte(rootPerson), &person); err != nil {
 		panic(err)
 	}
 	log.Debug("----")
-	log.Debugf("person:", person)
-	log.Debugf("Id:", person.Id)
+	log.Debugf("person: %+v", person)
+	log.Debugf("Id: %s", person.Id)
 	org.Head.Id = person.Id
-	log.Debugf("displayName:", person.Name)
+	log.Debugf("displayName: %s", person.Name)
 	org.Head.Name = person.Name
-	log.Debugf("jobTitle:", person.Title)
+	log.Debugf("jobTitle: %s", person.Title)
 	org.Head.Title = person.Title
-	log.Debugf("UPN:", person.UserPrincipalName)
+	log.Debugf("UPN: %s", person.UserPrincipalName)
 	org.Head.UserPrincipalName = person.UserPrincipalName
-	log.Debugf("DirectReports:", person.DirectReports)
+	log.Debugf("DirectReports: %+v", person.DirectReports)
 	extra.SetNamingStrategy(extra.LowerCaseWithUnderscores)
 	output, _ := json.Marshal(person)
 	// decode it back to get a map

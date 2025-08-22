@@ -3,7 +3,7 @@ package main
 import (
 	"os"
 
-	"cmd/mschartgen/mschartgen.go"
+	"mschartgen"
 
 	log "github.com/sirupsen/logrus"
 	"github.com/urfave/cli"
